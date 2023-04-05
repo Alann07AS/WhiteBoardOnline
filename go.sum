@@ -1,0 +1,4 @@
+github.com/Alann07AS/DevTools v1.0.0 h1:3psfPpjlf6SvrS/0lM3sAEv9oekfb2N1dGTRd2cYStY=
+github.com/Alann07AS/DevTools v1.0.0/go.mod h1:CdcHwkRSTwABbAiANv9r9xbSW75CNBhKfHQzNtA7ITk=
+github.com/gorilla/websocket v1.5.0 h1:PPwGk2jz7EePpoHN/+ClbZu8SPxiqlu12wZP/3sWmnc=
+github.com/gorilla/websocket v1.5.0/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
