@@ -16,6 +16,13 @@ A Golang Server with WebSocket protocol.
   go run main.go
 ```
 After you need to conect to your ipv4 on your local network.
+
+Pour trouver cette ip facilement sur linux:
+
+```bash
+ip a | grep 'inet.*brd' | awk '{print $2}' | cut -f1 -d'/'
+```
+
 ## Authors
 
 - [@Alann07AS](https://github.com/Alann07AS)
