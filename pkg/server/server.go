@@ -10,8 +10,9 @@ import (
 )
 
 var (
-	conns     []*websocket.Conn
+	conns     = make(map[int]*websocket.Conn)
 	broadcast = make(chan []byte, 1)
+	iUser     = 0
 )
 
 func StartServer() {
@@ -40,11 +41,19 @@ var upgrader = websocket.Upgrader{
 func ws(w http.ResponseWriter, r *http.Request) {
 	conn, err := upgrader.Upgrade(w, r, nil)
 	errm.LogErr(err)
-	d, _ := json.Marshal(map[string]interface{}{
-		"type": "sendupdate",
-	})
-	broadcast <- d
-	conns = append(conns, conn)
+	for _, c := range conns {
+		d, _ := json.Marshal(map[string]interface{}{
+			"type": "sendupdate",
+		})
+		c.WriteMessage(1, d)
+		break
+	}
+	l := iUser
+	conns[iUser] = conn
+	iUser++
+	defer func() {
+		delete(conns, l)
+	}()
 	for {
 		_, message, err := conn.ReadMessage()
 		if err != nil {

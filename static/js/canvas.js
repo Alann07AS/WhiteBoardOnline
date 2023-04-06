@@ -19,13 +19,22 @@ export function initCanvas() {
     OnWsMessage.set("sendupdate", SendUpdate)
 }
 
-canvas.addEventListener("mousemove", Draw)
+
+/**@param {TouchEvent} e  */
+canvas.ontouchmove = (e) =>{
+    Array(...e.touches).forEach(e2 => {
+        Draw(e2, "touch")
+    });
+}
+/**@param {TouchEvent} e  */
+canvas.onmousemove = (e) =>{
+        Draw(e)
+}
 /**
- * 
  * @param {MouseEvent} eve 
 */
-function Draw(eve) {
-    if (eve.buttons !== 1) return
+function Draw(eve, overflo) {
+    if (eve.buttons !== 1 && overflo !== "touch" ) return
     // Point(getX(eve), getY(eve), 10)
     SendMessage("point", getX(eve), getY(eve), pen.size, pen.color)
 }

@@ -1,7 +1,8 @@
 body, html {
     margin: 0;
-    height: 100vh;
+    height: 100%;
     width: 100vw;
+    overflow: hidden;
 }
 
 body {
@@ -24,6 +25,16 @@ body {
     width: 18vw;
     height: 96vh;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+}
+
+#tools > * {
+    height: auto;
+    min-height: 28px;
+    width: 100%;
 }
 
 #canvas {
