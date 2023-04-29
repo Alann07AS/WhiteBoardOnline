@@ -58,7 +58,8 @@ func ws(w http.ResponseWriter, r *http.Request) {
 	for {
 		_, message, err := conn.ReadMessage()
 		if err != nil {
-			errm.LogErr(err)
+			//errm.LogErr(err)
+			fmt.Println(err)
 			return
 		}
 		broadcast <- message
