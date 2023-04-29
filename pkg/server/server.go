@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/Alann07AS/DevTools/GO/errm"
+	//"github.com/Alann07AS/DevTools/GO/errm"
 	"github.com/gorilla/websocket"
 )
 
@@ -40,7 +40,8 @@ var upgrader = websocket.Upgrader{
 
 func ws(w http.ResponseWriter, r *http.Request) {
 	conn, err := upgrader.Upgrade(w, r, nil)
-	errm.LogErr(err)
+	//errm.LogErr(err)
+	fmt.Println(err)
 	for _, c := range conns {
 		d, _ := json.Marshal(map[string]interface{}{
 			"type": "sendupdate",
