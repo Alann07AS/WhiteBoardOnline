@@ -39,3 +39,19 @@ func Clear() {
     ctx.ClearRect(0, 0, ctx.Width(), ctx.Height())
 
 }
+
+func GetUpdate(imgData []byte) error {
+
+    img, err := canvas.LoadImageBytes(imgData)
+
+    if err != nil {
+
+        return err
+
+    }
+
+    ctx.DrawImage(img, 0, 0)
+
+    return nil
+
+}
