@@ -55,3 +55,7 @@ func GetUpdate(imgData []byte) error {
     return nil
 
 }
+
+ func GetCtx() *canvas.Context {
+    return ctx
+ }
