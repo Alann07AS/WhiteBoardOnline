@@ -1,61 +1,34 @@
 package canvas
 
-import (
+// var ctx *canvas
 
-    "github.com/tfriedel6/canvas"
+func InitCanvas(width, height int) /**canvas.Canvas*/ {
+	// Création d'un canevas de la taille spécifiée
 
-)
+	// cnv := canvas.New()
 
-var ctx *canvas.Context
+	// Récupération du contexte du canevas
 
-func InitCanvas(width, height int) *canvas.Canvas {
-
-    // Création d'un canevas de la taille spécifiée
-
-    cnv := canvas.New(float64(width), float64(height))
-
-    // Récupération du contexte du canevas
-
-    ctx = cnv.Context2D()
-
-    return cnv
-
+	// return cnv
 }
 
 func Point(x, y, r float64, color string) {
-
-    ctx.BeginPath()
-
-    ctx.FillStyle = color
-
-    ctx.Arc(x, y, r, 0, 2*math.Pi, false)
-
-    ctx.Fill()
-
+	// ctx.BeginPath()
+	//
+	// ctx.FillStyle = color
+	//
+	// ctx.Arc(x, y, r, 0, 2*math.Pi, false)
+	//
+	// ctx.Fill()
 }
 
 func Clear() {
-
-    ctx.ClearRect(0, 0, ctx.Width(), ctx.Height())
-
 }
 
 func GetUpdate(imgData []byte) error {
-
-    img, err := canvas.LoadImageBytes(imgData)
-
-    if err != nil {
-
-        return err
-
-    }
-
-    ctx.DrawImage(img, 0, 0)
-
-    return nil
-
+	return nil
 }
 
- func GetCtx() *canvas.Context {
-    return ctx
- }
+func GetCtx() /*context*/ {
+	return
+}
