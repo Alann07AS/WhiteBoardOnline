@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
 
 	//"github.com/Alann07AS/DevTools/GO/errm"
 	"github.com/gorilla/websocket"
@@ -19,8 +20,12 @@ func StartServer() {
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 	http.HandleFunc("/", home)
 	http.HandleFunc("/ws", ws)
-	go http.ListenAndServe(":8080", nil)
-	fmt.Println("Server start on http://localhost:8080")
+	port := ":8080"
+	if len(os.Args) == 2 {
+		port = ":" + os.Args[1]
+	}
+	go http.ListenAndServe(port, nil)
+	fmt.Printf("Server start on http://localhost%v\n", port)
 	for {
 		message := <-broadcast
 		for _, c := range conns {
@@ -40,7 +45,7 @@ var upgrader = websocket.Upgrader{
 
 func ws(w http.ResponseWriter, r *http.Request) {
 	conn, err := upgrader.Upgrade(w, r, nil)
-	//errm.LogErr(err)
+	// errm.LogErr(err)
 	fmt.Println(err)
 	for _, c := range conns {
 		d, _ := json.Marshal(map[string]interface{}{
@@ -58,7 +63,7 @@ func ws(w http.ResponseWriter, r *http.Request) {
 	for {
 		_, message, err := conn.ReadMessage()
 		if err != nil {
-			//errm.LogErr(err)
+			// errm.LogErr(err)
 			fmt.Println(err)
 			return
 		}
